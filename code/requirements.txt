@@ -3,3 +3,4 @@ python-dotenv
 gql
 requests
 requests_toolbelt
+tqdm
