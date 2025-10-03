@@ -18,7 +18,7 @@ RETRY_BASE = 2.0
 RETRY_CAP = 60.0
 PAGE_THROTTLE_S = 0.3     # menor intervalo entre páginas
 TRANSPORT_TIMEOUT = 30
-OUTPUT_FILE = "pull_requests.csv"
+OUTPUT_FILE = "pull_requests_2.csv"
 MAX_WORKERS = 8           # paralelismo (ajuste conforme sua máquina e limite da API)
 
 # --------------- Autenticação ---------------
@@ -87,7 +87,13 @@ query ($owner: String!, $name: String!, $cursor: String, $pageSize: Int!) {
         closedAt
         mergedAt
         author { login }
-        reviews(first: 1) { totalCount }  # só traz info mínima de review
+        bodyText
+        reviews { totalCount }
+        participants { totalCount }
+        comments { totalCount }
+        additions
+        deletions
+        changedFiles
       }
     }
   }
@@ -184,12 +190,7 @@ def process_repository(edge):
             "repo_owner": owner,
             "repo_url": repo["url"],
             "repo_stars": repo["stargazerCount"],
-            "repo_createdAt": repo["createdAt"],
-            "repo_pushedAt": repo["pushedAt"],
-            "repo_isFork": repo.get("isFork", False),
-            "repo_isArchived": repo.get("isArchived", False),
-            "repo_releases": (repo.get("releases") or {}).get("totalCount", 0),
-            "repo_defaultBranch": (repo.get("defaultBranchRef") or {}).get("name"),
+
             "pr_number": pr["number"],
             "pr_title": pr["title"],
             "pr_url": pr["url"],
@@ -199,6 +200,13 @@ def process_repository(edge):
             "pr_closedAt": pr.get("closedAt"),
             "pr_mergedAt": pr.get("mergedAt"),
             "pr_reviews": pr["reviews"]["totalCount"],
+
+            "pr_description_len": len(pr.get("bodyText") or ""),
+            "pr_participants": pr["participants"]["totalCount"],
+            "pr_comments": pr["comments"]["totalCount"],
+            "pr_additions": pr["additions"],
+            "pr_deletions": pr["deletions"],
+            "pr_changed_files": pr["changedFiles"],
         })
     return rows
 
