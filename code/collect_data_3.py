@@ -13,12 +13,13 @@ from requests.exceptions import HTTPError, RequestException
 MAX_REPOS = 200           # total de repositórios a coletar
 REPOS_PAGE_SIZE = 20      # tamanho da página para busca de repositórios
 PRS_PAGE_SIZE = 100       # PRs por página (máximo permitido pelo GitHub GraphQL)
+MAX_PRS_PER_REPO = 101    # máximo de PRs válidos por repositório
 MAX_RETRIES = 8
 RETRY_BASE = 2.0
 RETRY_CAP = 60.0
 PAGE_THROTTLE_S = 0.3     # menor intervalo entre páginas
 TRANSPORT_TIMEOUT = 30
-OUTPUT_FILE = "pull_requests_2.csv"
+OUTPUT_FILE = "pull_requests.csv"
 MAX_WORKERS = 8           # paralelismo (ajuste conforme sua máquina e limite da API)
 
 # --------------- Autenticação ---------------
@@ -160,18 +161,22 @@ def collect_repos():
 def collect_repo_prs(owner: str, name: str, total_prs: int):
     cursor = None
     collected = []
-    while True:
+    while len(collected) < MAX_PRS_PER_REPO:
         data = execute_with_retries(Q_REPO_PRS, {"owner": owner, "name": name, "cursor": cursor, "pageSize": PRS_PAGE_SIZE})
         prs = data["repository"]["pullRequests"]
         nodes = prs.get("nodes", []) or []
         filtered = filter_pull_requests(nodes)
         collected.extend(filtered)
 
-        if not prs["pageInfo"]["hasNextPage"]:
+        # Para se atingiu o limite ou não há mais páginas
+        if len(collected) >= MAX_PRS_PER_REPO or not prs["pageInfo"]["hasNextPage"]:
             break
+        
         cursor = prs["pageInfo"]["endCursor"]
         time.sleep(PAGE_THROTTLE_S)
-    return collected
+    
+    # Retorna apenas os primeiros MAX_PRS_PER_REPO PRs válidos
+    return collected[:MAX_PRS_PER_REPO]
 
 def process_repository(edge):
     repo = edge["node"]
