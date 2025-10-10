@@ -1,11 +1,11 @@
 #  Relatório Final - LAB03  
 
 ## 1. Informações do grupo  
-- **🎓 Curso:** Engenharia de Software  
-- **📘 Disciplina:** Laboratório de Experimentação de Software  
-- **🗓 Período:** 6° Período  
-- **👨‍🏫 Professor(a):** Prof. Dr. João Paulo Carneiro Aramuni  
-- **👥 Membros do Grupo:** Arthur Ferreira, Kimberly Liz, Renato Cazzoletti  
+- ** Curso:** Engenharia de Software  
+- ** Disciplina:** Laboratório de Experimentação de Software  
+- ** Período:** 6° Período  
+- ** Professor(a):** Prof. Dr. João Paulo Carneiro Aramuni  
+- ** Membros do Grupo:** Arthur Ferreira, Kimberly Liz, Renato Cazzoletti  
 
 ---
 
@@ -23,8 +23,8 @@ Com base nos dados disponibilizados, formulamos hipóteses informais e conduzimo
 
 A coleta e análise dos dados foram realizadas utilizando um conjunto de bibliotecas e tecnologias específicas para interação com a API do GitHub e processamento estatístico.  
 
-- **💻 Linguagem:** Python 3.x  
-- **📦 Bibliotecas principais:**  
+- ** Linguagem:** Python 3.x  
+- ** Bibliotecas principais:**  
   - `requests` e `gql` — para comunicação com a **GitHub GraphQL API**;  
   - `pandas` — manipulação e estruturação dos dados em formato tabular (DataFrame e CSV);  
   - `numpy` — suporte a operações numéricas e vetoriais;  
@@ -33,20 +33,20 @@ A coleta e análise dos dados foram realizadas utilizando um conjunto de bibliot
   - `dotenv` — leitura segura do token de autenticação do arquivo `.env`;  
   - `concurrent.futures` — execução **paralela** para coleta de PRs em múltiplos repositórios simultaneamente.  
 
-- **🌐 API utilizada:**  
+- ** API utilizada:**  
   - **GitHub GraphQL API v4**, acessada via autenticação por token pessoal, permitindo consultas otimizadas sobre repositórios, *pull requests*, revisões e participantes.  
 
-- **⚙️ Estratégias de execução:**  
+- ** Estratégias de execução:**  
   - Coleta dos **repositórios mais populares** (≥ 1000 estrelas), com paginação configurada e tratamento de *rate limits* via **backoff exponencial**;  
   - Uso de **multithreading (ThreadPoolExecutor)** para coletar PRs em paralelo, reduzindo o tempo total de execução;  
   - Filtragem automática dos *Pull Requests* conforme critérios definidos (≥ 1 revisão e tempo > 1 hora);  
   - Salvamento incremental em CSV (`pull_requests.csv`), permitindo retomada segura em caso de falha.  
 
-- **🧠 Ferramentas de análise estatística:**  
+- ** Ferramentas de análise estatística:**  
   - Teste de **correlação de Spearman** — para medir a força e direção das relações entre métricas quantitativas;  
   - Teste **Mann–Whitney U** — para comparar distribuições entre grupos categóricos (MERGED vs CLOSED).  
 
-- **🖼 Visualização:**  
+- ** Visualização:**  
   - Geração de gráficos por questão de pesquisa (RQ01–RQ08) e hipóteses (H1–H5), com **boxplots e dispersões**, para apoiar a interpretação visual das tendências.  
 
 ---
@@ -145,7 +145,8 @@ Os resultados foram organizados conforme as **questões de pesquisa (RQ)** propo
 ### 🔹 RQ01 — Relação entre o tamanho dos PRs e o feedback final
 - Mediana de `num_files`: **MERGED = 1**, **CLOSED = 1**  
 - Mediana de `lines_changed`: **MERGED = 61**, **CLOSED = 64**  
-📊 *Figura:* `figs_lab03/RQ01_lines_by_status.png`  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/0e7b24d8-eead-4415-a44a-b6c9044fc076" />
+
 
 **Interpretação:**  
 Não houve diferença significativa entre PRs aceitos e rejeitados em termos de tamanho. Isso indica que o número de arquivos ou linhas modificadas **não é o fator determinante** para o merge, sugerindo que revisores consideram mais a qualidade e relevância das mudanças do que a quantidade de linhas.
@@ -154,7 +155,8 @@ Não houve diferença significativa entre PRs aceitos e rejeitados em termos de 
 
 ### 🔹 RQ02 — Relação entre o tempo de análise e o feedback final
 - Mediana de `analysis_time_hours`: **MERGED = 24 h**, **CLOSED = 22 h**  
-📊 *Figura:* `figs_lab03/RQ02_time_by_status.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/f784d9c2-2a94-4295-abfd-4aa24919ae9c" />
+
 
 **Interpretação:**  
 PRs *MERGED* apresentaram tempo ligeiramente maior de análise. Isso sugere que **revisões mais longas tendem a ser mais cuidadosas e colaborativas**, o que pode favorecer a aceitação final do código.
@@ -163,7 +165,8 @@ PRs *MERGED* apresentaram tempo ligeiramente maior de análise. Isso sugere que 
 
 ### 🔹 RQ03 — Relação entre o tamanho da descrição e o feedback final
 - Mediana de `desc_len`: **MERGED = 326**, **CLOSED = 304**  
-📊 *Figura:* `figs_lab03/RQ03_desc_by_status.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/8b4dbfec-013b-479f-8060-d70c7c677b0a" />
+
 
 **Interpretação:**  
 Descrições mais longas aparecem em PRs *MERGED*, ainda que a diferença seja pequena. Isso sugere que descrições detalhadas podem **facilitar a compreensão** dos revisores e aumentar a chance de aprovação.
@@ -172,7 +175,8 @@ Descrições mais longas aparecem em PRs *MERGED*, ainda que a diferença seja p
 
 ### 🔹 RQ04 — Relação entre as interações e o feedback final
 - Mediana de `interactions`: **MERGED = 4**, **CLOSED = 3**  
-📊 *Figura:* `figs_lab03/RQ04_interactions_by_status.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/c693f595-5896-401a-b12e-30df27e75bab" />
+
 
 **Interpretação:**  
 PRs aceitos tendem a envolver **mais interações**, indicando que o engajamento durante o processo de revisão é um fator positivo. A discussão entre revisores e autores parece estar relacionada à qualidade e aceitação final do PR.
@@ -181,7 +185,8 @@ PRs aceitos tendem a envolver **mais interações**, indicando que o engajamento
 
 ### 🔹 RQ05 — Tamanho do PR × número de revisões
 - Correlação de Spearman (`num_files` × `review_count`): **r = 0.1120**, *p* < 0.001  
-📊 *Figura:* `figs_lab03/RQ05_files_vs_reviews.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/a31f3c00-020f-4c43-a8c3-daf7b4877dd4" />
+
 
 **Interpretação:**  
 Existe uma correlação positiva, embora fraca: PRs maiores tendem a receber mais revisões. Isso é esperado, pois modificações extensas demandam maior validação.
@@ -190,7 +195,8 @@ Existe uma correlação positiva, embora fraca: PRs maiores tendem a receber mai
 
 ### 🔹 RQ06 — Tempo de análise × número de revisões
 - Correlação de Spearman: **r = 0.2170**, *p* < 0.001  
-📊 *Figura:* `figs_lab03/RQ06_time_vs_reviews.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/e3e85734-97a9-48df-b8c1-05a2220391ca" />
+
 
 **Interpretação:**  
 Correlação moderada positiva. PRs que demoram mais para serem concluídos geralmente envolvem mais revisões e discussões, sugerindo **processos mais colaborativos** ou **códigos mais complexos**.
@@ -199,7 +205,8 @@ Correlação moderada positiva. PRs que demoram mais para serem concluídos gera
 
 ### 🔹 RQ07 — Tamanho da descrição × número de revisões
 - Correlação de Spearman: **r = 0.0580**, *p* < 0.001  
-📊 *Figura:* `figs_lab03/RQ07_desc_vs_reviews.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/2259fbb2-06f7-4508-ac72-3e47a6e824af" />
+
 
 **Interpretação:**  
 Correlação fraca, indicando que o comprimento da descrição **não influencia significativamente** o número de revisões. Autores detalhistas não necessariamente reduzem o volume de feedback recebido.
@@ -208,22 +215,105 @@ Correlação fraca, indicando que o comprimento da descrição **não influencia
 
 ### 🔹 RQ08 — Interações × número de revisões
 - Correlação de Spearman: **r = 0.4820**, *p* < 0.001  
-📊 *Figura:* `figs_lab03/RQ08_interactions_vs_reviews.png`
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/86cd8822-c3b9-4bb9-b14e-ca681ff28f9d" />
+
 
 **Interpretação:**  
 Correlação forte. PRs com mais interações possuem mais revisões, o que confirma que **a colaboração é central no processo de revisão**. Projetos com maior engajamento revisam de forma mais intensa.
 
 ---
 
-## 6. Discussão das hipóteses  
+## 6. Discussão das Hipóteses  
 
-| Hipótese | Resultado | Interpretação detalhada |
-|-----------|------------|-------------------------|
-| **H1** | ❌ *Refutada* | PRs grandes não foram necessariamente rejeitados — revisores parecem priorizar qualidade e contexto das alterações. |
-| **H2** | ⚠️ *Parcialmente confirmada* | Revisões mais longas indicam maior discussão e revisão colaborativa, o que aumenta as chances de merge. |
-| **H3** | ❌ *Refutada* | Descrições longas não reduzem revisões; ao contrário, PRs complexos exigem mais explicação e mais feedback. |
-| **H4** | ✅ *Confirmada* | Interações e revisões estão fortemente ligadas — quanto mais diálogo entre revisores e autores, mais revisões são registradas. |
-| **H5** | ✅ *Confirmada* | Correlação alta (r ≈ 0.73) mostra que PRs com mais arquivos alteram mais linhas, refletindo maior impacto e complexidade. |
+Nesta seção, analisamos os resultados obtidos para as cinco hipóteses formuladas a partir das métricas coletadas no processo de *code review* no GitHub.  
+Cada hipótese foi testada por meio de correlação de Spearman, de modo a identificar padrões de relação entre variáveis de interesse, e é acompanhada de seu respectivo gráfico de dispersão.
+
+---
+
+### **H1 — Linhas alteradas × Número de revisões**
+
+**Hipótese:** PRs que modificam mais linhas exigem mais revisões, pois são potencialmente mais complexos e demandam maior atenção dos revisores.  
+
+**Resultado:** ⚠️ *Parcialmente confirmada*  
+O coeficiente de correlação de Spearman indica uma **relação positiva moderada**, mas não uniforme em todos os casos.  
+Isso sugere que PRs muito grandes tendem, de fato, a gerar mais rodadas de revisão, porém há casos em que equipes lidam com PRs extensos de forma eficiente — por exemplo, quando há bom contexto ou documentação.  
+
+**Interpretação:**  
+Esse comportamento pode refletir a maturidade dos projetos: repositórios mais organizados mantêm diretrizes claras de contribuição, o que reduz a necessidade de revisões extras mesmo para grandes alterações.  
+Ainda assim, o aumento de linhas modificadas tende a elevar o esforço de revisão e o risco de rejeição parcial.  
+
+ **Gráfico — H1: Linhas alteradas × Nº de revisões**  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/e0c04645-14a2-4fc6-83e4-179cb0cad037" />
+
+
+---
+
+### **H2 — Tempo de análise × Número de revisões**
+
+**Hipótese:** PRs que permanecem mais tempo em revisão passam por mais ciclos de avaliação, o que aumenta o número total de revisões registradas.  
+
+**Resultado:** ✅ *Confirmada*  
+A análise revelou uma **correlação positiva significativa**, mostrando que revisões mais longas tendem a envolver mais discussões e iterações.  
+
+**Interpretação:**  
+Esse resultado reforça a ideia de que revisões detalhadas levam tempo, e que o tempo de permanência de um PR em análise reflete a profundidade da revisão.  
+PRs que passam por várias rodadas geralmente envolvem mais pessoas e comentários, o que está alinhado com práticas de qualidade em desenvolvimento colaborativo.  
+
+ **Gráfico — H2: Tempo de análise × Nº de revisões**  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/819ac273-3c9a-4b58-8797-6d15200f02e2" />
+
+
+---
+
+### **H3 — Tamanho da descrição × Número de revisões**
+
+**Hipótese:** Descrições mais completas reduzem o número de revisões, pois facilitam o entendimento do contexto pelo revisor.  
+
+**Resultado:** ❌ *Refutada*  
+Os resultados mostraram **correlação fraca e positiva**, ou seja, descrições mais longas estão associadas a um pequeno aumento no número de revisões.  
+
+**Interpretação:**  
+Esse achado contraria a expectativa inicial: PRs com descrições mais detalhadas não necessariamente simplificam o processo.  
+Na prática, descrições longas podem sinalizar PRs mais complexos, o que demanda mais comentários, discussões e ajustes antes da aprovação.  
+
+ **Gráfico — H3: Descrição × Nº de revisões**  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/b9034327-a3f8-4364-ac32-8cd2d2df2556" />
+
+
+---
+
+### **H4 — Interações × Número de revisões**
+
+**Hipótese:** PRs com mais interações (comentários e discussões) tendem a ter mais revisões, pois há maior engajamento entre autor e revisores.  
+
+**Resultado:** ✅ *Confirmada*  
+A correlação de Spearman foi **forte e positiva**, indicando que interações e número de revisões crescem em conjunto.  
+
+**Interpretação:**  
+Isso evidencia o papel da comunicação no processo de revisão: quanto maior o diálogo entre os envolvidos, mais o PR é aprimorado.  
+Projetos colaborativos com cultura de revisão ativa tendem a exibir esse padrão, associando mais interações a melhores resultados e maior probabilidade de *merge*.  
+
+ **Gráfico — H4: Interações × Revisões**  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/1a0e1f61-9afe-4a88-8a86-da9f6135a952" />
+
+
+---
+
+### **H5 — Arquivos modificados × Linhas alteradas**
+
+**Hipótese:** PRs que alteram mais arquivos também modificam mais linhas, pois mudanças amplas tendem a impactar múltiplos componentes.  
+
+**Resultado:** ✅ *Confirmada*  
+A correlação de Spearman foi **forte (ρ ≈ 0.73)**, indicando uma relação direta e consistente entre o número de arquivos e a quantidade de linhas modificadas.  
+
+**Interpretação:**  
+Esse é um dos resultados mais claros e intuitivos: quanto mais arquivos são afetados, maior o volume total de código alterado.  
+A relação linear indica que essas alterações são distribuídas de forma coerente e refletem a complexidade estrutural dos PRs.  
+Além disso, o padrão confirma que *pull requests* mais amplos impactam mais partes do sistema, exigindo revisões cuidadosas.  
+
+ **Gráfico — H5: Arquivos × Linhas alteradas**  
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/70e59e61-1a05-46c5-879b-a26834abbcbd" />
+
 
 ---
 
