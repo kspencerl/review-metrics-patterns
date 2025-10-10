@@ -335,3 +335,5 @@ Revisões com maior engajamento e tempo de análise tendem a resultar em merges 
 
 ---
 
+Link da apresentação: [Acesse aqui](https://docs.google.com/presentation/d/1KO-RxrJjtQDP-SK9_D4d-fQG5G9AKngT9UdIoiG09P4/edit?usp=sharing)
+
