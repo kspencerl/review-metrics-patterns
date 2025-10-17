@@ -145,7 +145,8 @@ Os resultados foram organizados conforme as **questões de pesquisa (RQ)** propo
 ### 🔹 RQ01 — Relação entre o tamanho dos PRs e o feedback final
 - Mediana de `num_files`: **MERGED = 1**, **CLOSED = 1**  
 - Mediana de `lines_changed`: **MERGED = 61**, **CLOSED = 64**  
-<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/0e7b24d8-eead-4415-a44a-b6c9044fc076" />
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/629ab04a-011a-433e-88ac-42d2595e4351" />
+
 
 
 **Interpretação:**  
@@ -155,7 +156,8 @@ Não houve diferença significativa entre PRs aceitos e rejeitados em termos de 
 
 ### 🔹 RQ02 — Relação entre o tempo de análise e o feedback final
 - Mediana de `analysis_time_hours`: **MERGED = 24 h**, **CLOSED = 22 h**  
-<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/f784d9c2-2a94-4295-abfd-4aa24919ae9c" />
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/6f854614-7cc9-4938-aac4-631ca1117f11" />
+
 
 
 **Interpretação:**  
@@ -165,7 +167,8 @@ PRs *MERGED* apresentaram tempo ligeiramente maior de análise. Isso sugere que 
 
 ### 🔹 RQ03 — Relação entre o tamanho da descrição e o feedback final
 - Mediana de `desc_len`: **MERGED = 326**, **CLOSED = 304**  
-<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/8b4dbfec-013b-479f-8060-d70c7c677b0a" />
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/10f50045-a4fc-4501-a378-c3386811adb7" />
+
 
 
 **Interpretação:**  
@@ -175,7 +178,8 @@ Descrições mais longas aparecem em PRs *MERGED*, ainda que a diferença seja p
 
 ### 🔹 RQ04 — Relação entre as interações e o feedback final
 - Mediana de `interactions`: **MERGED = 4**, **CLOSED = 3**  
-<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/c693f595-5896-401a-b12e-30df27e75bab" />
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/97539f63-95fc-4110-9447-5d6cdd6892f0" />
+
 
 
 **Interpretação:**  
