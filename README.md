@@ -143,47 +143,53 @@ Após aplicar os filtros, foram analisados **16.094 Pull Requests**.
 Os resultados foram organizados conforme as **questões de pesquisa (RQ)** propostas no enunciado do laboratório.
 
 ### 🔹 RQ01 — Relação entre o tamanho dos PRs e o feedback final
-- Mediana de `num_files`: **MERGED = 1**, **CLOSED = 1**  
-- Mediana de `lines_changed`: **MERGED = 61**, **CLOSED = 64**  
-<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/629ab04a-011a-433e-88ac-42d2595e4351" />
-
-
-
 **Interpretação:**  
-Não houve diferença significativa entre PRs aceitos e rejeitados em termos de tamanho. Isso indica que o número de arquivos ou linhas modificadas **não é o fator determinante** para o merge, sugerindo que revisores consideram mais a qualidade e relevância das mudanças do que a quantidade de linhas.
+- O gráfico mostra que PRs maiores não têm relação clara com o feedback final (MERGED ou CLOSED). A distribuição é muito concentrada próxima a zero e com poucos outliers grandes.
+- Conclusão: Não há correlação significativa entre o tamanho do PR e o feedback final.
+<img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/629ab04a-011a-433e-88ac-42d2595e4351" />
 
 ---
 
 ### 🔹 RQ02 — Relação entre o tempo de análise e o feedback final
-- Mediana de `analysis_time_hours`: **MERGED = 24 h**, **CLOSED = 22 h**  
+
+**Interpretação:**
+- Os PRs fechados (CLOSED) tendem a ter tempos de análise um pouco maiores, mas a sobreposição dos dados é grande.
+- Conclusão: Correlação fraca — o tempo de análise não é um fator determinante no feedback final.
+
+
 <img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/6f854614-7cc9-4938-aac4-631ca1117f11" />
 
 
 
-**Interpretação:**  
-PRs *MERGED* apresentaram tempo ligeiramente maior de análise. Isso sugere que **revisões mais longas tendem a ser mais cuidadosas e colaborativas**, o que pode favorecer a aceitação final do código.
-
 ---
 
 ### 🔹 RQ03 — Relação entre o tamanho da descrição e o feedback final
-- Mediana de `desc_len`: **MERGED = 326**, **CLOSED = 304**  
+
+**Interpretação:**    
+- A quantidade de texto na descrição (pr_description_len) varia pouco entre PRs aceitos e rejeitados, indicando que descrições longas não garantem aprovação.
+- Conclusão: Sem correlação significativa entre o tamanho da descrição e o feedback final.
+
 <img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/10f50045-a4fc-4501-a378-c3386811adb7" />
 
 
 
-**Interpretação:**  
-Descrições mais longas aparecem em PRs *MERGED*, ainda que a diferença seja pequena. Isso sugere que descrições detalhadas podem **facilitar a compreensão** dos revisores e aumentar a chance de aprovação.
+
 
 ---
 
 ### 🔹 RQ04 — Relação entre as interações e o feedback final
-- Mediana de `interactions`: **MERGED = 4**, **CLOSED = 3**  
+
+**Interpretação:**  
+
+- Os PRs com mais interações aparecem tanto em MERGED quanto em CLOSED, sem padrão claro.
+- Conclusão: Não há correlação evidente entre o número de interações e o feedback final.
+
 <img width="2400" height="1800" alt="image" src="https://github.com/user-attachments/assets/97539f63-95fc-4110-9447-5d6cdd6892f0" />
 
 
 
-**Interpretação:**  
-PRs aceitos tendem a envolver **mais interações**, indicando que o engajamento durante o processo de revisão é um fator positivo. A discussão entre revisores e autores parece estar relacionada à qualidade e aceitação final do PR.
+
+
 
 ---
 
